@@ -30,6 +30,10 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'simple_form'
+gem 'ransack'
+
 gem 'devise'
 gem 'factory_girl'
 
@@ -48,6 +52,10 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'pry-rails'
+end
+
+group :test do
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
