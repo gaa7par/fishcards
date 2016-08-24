@@ -1,0 +1,13 @@
+<h1>Fishcards</h1>
+<h2>Languages</h2>
+
+<ul>
+  <% @languages.each do |language| %>
+  <li>
+    <%= language.name %>
+    <%= link_to 'Show', user_language_path(language) %>
+  </li>
+  <% end %>
+</ul>
+
+<%= link_to 'New language', new_user_language_path(@language) %>

@@ -1,0 +1,9 @@
+<h1>Language</h1>
+<p>
+  <strong>Name:</strong>
+  <%= @language.name %>
+</p>
+
+<%= link_to 'Edit', edit_user_language_path %>
+<%= link_to 'Delete', user_language_path(@language), method: :delete %>
+<%= link_to 'Back', user_languages_path %>
