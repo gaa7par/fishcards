@@ -1,0 +1,14 @@
+<h1>Flashcard</h1>
+<p>
+  <strong>Front:</strong>
+  <%= @flashcard.front %>
+</p>
+
+<p>
+  <strong>Back:</strong>
+  <%= @flashcard.back %>
+</p>
+
+<%= link_to 'Edit', edit_user_flashcard_path %>
+<%= link_to 'Delete', user_flashcard_path(@flashcard), method: :delete %>
+<%= link_to 'Back', user_flashcards_path %>
