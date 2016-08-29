@@ -1,13 +1,13 @@
-<h1>Fishcards</h1>
 <h2>Flashcards</h2>
 
 <ul>
   <% @flashcards.each do |flashcard| %>
   <li>
-    <%= flashcard.name %>
-    <%= link_to 'Show', user_flashcard_path(flashcard) %>
+    <%= flashcard.front %>
+    <%= flashcard.back %>
+    <%#= link_to 'Show', user_language_flashcard_path(flashcard) %>
   </li>
   <% end %>
 </ul>
 
-<%= link_to 'New flashcard', new_user_flashcard_path(@flashcard) %>
+<%#= link_to 'New flashcard', new_user_language_flashcard_path(@flashcard) %>

@@ -1,9 +1,15 @@
-<h1>Language</h1>
+<h2><%= @language.name %></h2>
+
 <p>
-  <strong>Name:</strong>
-  <%= @language.name %>
+  <%= link_to 'Edit', edit_user_language_path %>
+  <%= link_to 'Delete', user_language_path(@language), method: :delete %>
+  <%= link_to 'Back', user_languages_path %>
+<p>
+
+<p>
+  <% @flashcards.each do |flashcard| %>
+    <strong><%= flashcard.front %></strong> <=> <%= flashcard.back %>
+  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_user_language_path %>
-<%= link_to 'Delete', user_language_path(@language), method: :delete %>
-<%= link_to 'Back', user_languages_path %>
+<%= link_to 'New flashcard', new_user_language_flashcard_path(@language) %>

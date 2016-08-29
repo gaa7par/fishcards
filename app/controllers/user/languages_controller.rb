@@ -7,6 +7,8 @@ class User::LanguagesController < ApplicationController
 
   def show
     @language = Language.find(params[:id])
+
+    @flashcards = @language.flashcards.where.not(id: nil)
   end
 
   def new
