@@ -6,10 +6,10 @@
   <%= link_to 'Back', user_languages_path %>
 <p>
 
-<p>
-  <% @flashcards.each do |flashcard| %>
+<% @flashcards.each do |flashcard| %>
+  <p>
     <strong><%= flashcard.front %></strong> <=> <%= flashcard.back %>
-  <% end %>
-</p>
+  </p>
+<% end %>
 
 <%= link_to 'New flashcard', new_user_language_flashcard_path(@language) %>

@@ -3,7 +3,7 @@
 <ul>
   <% @flashcards.each do |flashcard| %>
   <li>
-    <%= flashcard.front %>
+    <strong><%= flashcard.front %></strong>
     <%= flashcard.back %>
     <%#= link_to 'Show', user_language_flashcard_path(flashcard) %>
   </li>
@@ -11,3 +11,4 @@
 </ul>
 
 <%#= link_to 'New flashcard', new_user_language_flashcard_path(@flashcard) %>
+<%= link_to 'Back', user_languages_path %>
