@@ -1,9 +1,6 @@
 class User::FlashcardsController < ApplicationController
   before_action :authenticate_user!
-
-  def index
-    @flashcards = Flashcard.all
-  end
+  before_action :get_language
 
   def show
     @flashcard = Flashcard.find(params[:id])
@@ -18,10 +15,10 @@ class User::FlashcardsController < ApplicationController
   end
 
   def create
-    @flashcard = Flashcard.new(flashcard_params)
+    @flashcard = @language.flashcards.new(flashcard_params)
 
     if @flashcard.save
-      redirect_to [:user, @flashcard]
+      redirect_to [:user, @language, @flashcard]
     else
       render 'new'
     end
@@ -31,7 +28,7 @@ class User::FlashcardsController < ApplicationController
     @flashcard = Flashcard.find(params[:id])
 
     if @flashcard.update(flashcard_params)
-      redirect_to [:user, @flashcard]
+      redirect_to [:user, @language, @flashcard]
     else
       render 'edit'
     end
@@ -41,12 +38,17 @@ class User::FlashcardsController < ApplicationController
     @flashcard = Flashcard.find(params[:id])
     @flashcard.destroy
 
-    redirect_to [:user, @flashcard]
+    # redirect_to [:user, @language, @flashcard]
+    redirect_to user_languages_path
   end
 
   private
 
   def flashcard_params
     params.require(:flashcard).permit(:front, :back)
+  end
+
+  def get_language
+    @language = Language.find(params[:language_id])
   end
 end
