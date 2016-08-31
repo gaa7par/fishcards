@@ -9,6 +9,7 @@
 <% @flashcards.each do |flashcard| %>
   <p>
     <strong><%= flashcard.front %></strong> <=> <%= flashcard.back %>
+    <%= link_to 'Show', user_language_flashcard_path(@language, flashcard) %>
   </p>
 <% end %>
 

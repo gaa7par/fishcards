@@ -2,10 +2,6 @@ class User::FlashcardsController < ApplicationController
   before_action :authenticate_user!
   before_action :get_language
 
-  def index
-    @flashcards = Flashcard.all
-  end
-
   def show
     @flashcard = Flashcard.find(params[:id])
   end
@@ -39,10 +35,11 @@ class User::FlashcardsController < ApplicationController
   end
 
   def destroy
-    @flashcard = @language.flashcards.new(flashcard_params)
+    @flashcard = Flashcard.find(params[:id])
     @flashcard.destroy
 
-    redirect_to [:user, @language, @flashcard]
+    # redirect_to [:user, @language, @flashcard]
+    redirect_to user_languages_path
   end
 
   private
