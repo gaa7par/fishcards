@@ -1,0 +1,9 @@
+h2 Languages
+
+ul
+  - @languages.each do |language|
+    li
+      = language.name
+      = link_to 'Show', user_language_path(language)
+
+= link_to 'New language', new_user_language_path(@language)
