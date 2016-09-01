@@ -1,0 +1,14 @@
+h2 Flashcard
+p
+  strong
+    | Front:
+  = @flashcard.front
+
+p
+  strong
+    | Back:
+  = @flashcard.back
+
+= link_to 'Edit', edit_user_language_flashcard_path
+= link_to 'Delete', user_language_flashcard_path(@language, @flashcard), method: :delete
+= link_to 'Back', user_languages_path

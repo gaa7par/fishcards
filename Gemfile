@@ -35,9 +35,11 @@ gem 'simple_form'
 gem 'ransack'
 
 gem 'devise'
+gem 'pundit'
 gem 'factory_girl'
 
-gem 'pundit'
+gem 'slim'
+gem 'slim-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
