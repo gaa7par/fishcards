@@ -4,18 +4,9 @@ RSpec.describe User::FlashcardsController, type: :controller do
   let(:user) { create(:user) }
   before { sign_in user }
 
-  describe '#index' do
-    let(:call_request) { get :index }
-
-    context 'after request' do
-      before { call_request }
-
-      it { should render_template 'index' }
-    end
-  end
-
   describe '#show' do
-    let(:call_request) { get :show, id: flashcard.id }
+    let(:language) { create(:language) }
+    let(:call_request) { get :show, id: flashcard.id, language_id: language.id }
     let!(:flashcard) { create(:flashcard) }
 
     context 'after request' do
@@ -27,7 +18,8 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#new' do
-    let(:call_request) { get :new }
+    let(:language) { create(:language) }
+    let(:call_request) { get :new, language_id: language.id }
 
     context 'after request' do
       before { call_request }
@@ -38,7 +30,8 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#edit' do
-    let(:call_request) { get :edit, id: flashcard.id }
+    let(:language) { create(:language) }
+    let(:call_request) { get :edit, id: flashcard.id, language_id: language.id }
     let!(:flashcard) { create(:flashcard) }
 
     context 'after request' do
@@ -50,7 +43,8 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#create' do
-    let(:call_request) { post :create, flashcard: attributes }
+    let(:language) { create(:language) }
+    let(:call_request) { post :create, flashcard: attributes, language_id: language.id }
 
     context 'valid request' do
       let(:attributes) { attributes_for(:flashcard, front: 'el chico', back: 'the boy') }
@@ -62,7 +56,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
 
         let(:flashcard) { Flashcard.last }
 
-        it { should redirect_to user_language_flashcard_path(flashcard) }
+        it { should redirect_to user_language_flashcard_path(language.id, flashcard) }
         it { expect(flashcard.front).to eq 'el chico' }
         it { expect(flashcard.back).to eq 'the boy' }
       end
@@ -82,19 +76,20 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#update' do
+    let(:language) { create(:language) }
     let(:flashcard) { create(:flashcard, front: 'el chico', back: 'the boy') }
-    let(:call_request) { put :update, flashcard: attributes, id: flashcard.id }
+    let(:call_request) { put :update, flashcard: attributes, id: flashcard.id, language_id: language.id }
 
     context 'valid request' do
       let(:attributes) { attributes_for(:flashcard, front: 'la chica', back: 'the girl') }
 
-      it { expect { call_request }.to change { flashcard.reload.front }.from('el chico').to('the boy') }
-      it { expect { call_request }.to change { flashcard.reload.back }.from('la chica').to('the girl') }
+      it { expect { call_request }.to change { flashcard.reload.front }.from('el chico').to('la chica') }
+      it { expect { call_request }.to change { flashcard.reload.back }.from('the boy').to('the girl') }
 
       context 'after request' do
         before { call_request }
 
-        it { should redirect_to user_language_flashcard_path(flashcard) }
+        it { should redirect_to user_language_flashcard_path(language.id, flashcard) }
       end
     end
 
@@ -113,7 +108,8 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#destroy' do
-    let(:call_request) { delete :destroy, id: flashcard.id }
+    let(:language) { create(:language) }
+    let(:call_request) { delete :destroy, id: flashcard.id, language_id: language.id }
     let!(:flashcard) { create(:flashcard) }
 
     it { expect { call_request }.to change { Flashcard.count }.by(-1) }
@@ -121,7 +117,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
     context 'after request' do
       before { call_request }
 
-      it { should redirect_to user_flashcards_path }
+      it { should redirect_to user_languages_path }
     end
   end
 end
