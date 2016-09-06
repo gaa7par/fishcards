@@ -20,7 +20,7 @@ class User::LanguagesController < ApplicationController
   end
 
   def create
-    @language = Language.new(language_params)
+    @language = current_user.languages.new(language_params)
 
     if @language.save
       redirect_to [:user, @language]

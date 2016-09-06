@@ -38,8 +38,7 @@ class User::FlashcardsController < ApplicationController
     @flashcard = Flashcard.find(params[:id])
     @flashcard.destroy
 
-    # redirect_to [:user, @language, @flashcard]
-    redirect_to user_languages_path
+    redirect_to [:user, @language]
   end
 
   private
