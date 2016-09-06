@@ -1,99 +1,66 @@
 users = %w(alpha@fishcards.com bravo@fishcards.com charlie@fishcards.com)
 
-data = {
+languages = {
   "Spanish" => {
-    "el hombre" => "the man",
-    "la mujer" => "the woman",
-    "el niño" => "the boy",
-    "la niña" => "the girl",
-    "el perro" => "the dog",
-    "el gato" => "the cat",
-    "la manzana" => "the apple"
+    front: ["el hombre", "la mujer", "el niño", "la niña", "el perro", "el gato", "la manzana"],
+    back: ["the man", "the woman", "the boy", "the girl", "the dog", "the cat", "the apple"]
   },
 
   "French" => {
-    "l'homme" => "the man",
-    "la femme" => "the woman",
-    "le garçon" => "the boy",
-    "la fille" => "the girl",
-    "le chien" => "the dog",
-    "le chat" => "the cat",
-    "la pomme" => "the apple"
+    front: ["l'homme", "la femme", "le garçon", "la fille", "le chien", "le chat", "la pomme"],
+    back: ["the man", "the woman", "the boy", "the girl", "the dog", "the cat", "the apple"]
   },
 
   "German" => {
-    "der Mann" => "the man",
-    "die Frau" => "the woman",
-    "der Junge" => "the boy",
-    "das Mädchen" => "the girl",
-    "der Hund" => "the dog",
-    "die Katze" => "the cat",
-    "das Apfel" => "the apple"
+    front: ["der Mann", "die Frau", "der Junge", "das Mädchen", "der Hund", "die Katze", "das Apfel"],
+    back: ["the man", "the woman", "the boy", "the girl", "the dog", "the cat", "the apple"]
   },
 
   "Italian" => {
-    "l'oumo" => "the man",
-    "la donna" => "the woman",
-    "il ragazzo" => "the boy",
-    "la ragazza" => "the girl",
-    "il cane" => "the dog",
-    "il gatto" => "the cat",
-    "la mela" => "the apple"
+    front: ["l'oumo", "la donna", "il ragazzo", "la ragazza", "il cane", "il gatto", "la mela"],
+    back: ["the man", "the woman", "the boy", "the girl", "the dog", "the cat", "the apple"]
   },
 
   "Portuguese" => {
-    "o homem" => "the man",
-    "a mulher" => "the woman",
-    "o menino" => "the boy",
-    "a menina" => "the girl",
-    "o cachorro" => "the dog",
-    "o gato" => "the cat",
-    "a maçã" => "the apple"
+    front: ["o homem", "a mulher", "o menino", "a menina", "o cachorro", "o gato", "a maçã"],
+    back: ["the man", "the woman", "the boy", "the girl", "the dog", "the cat", "the apple"]
   },
 
   "Dutch" => {
-    "de man" => "the man",
-    "de vrouw" => "the woman",
-    "de jongen" => "the boy",
-    "het meisje" => "the girl",
-    "de hond" => "the dog",
-    "de kat" => "the cat",
-    "de appel" => "the apple"
+    front: ["de man", "de vrouw", "de jongen", "het meisje", "de hond", "de kat", "de appel"],
+    back: ["the man", "the woman", "the boy", "the girl", "the dog", "the cat", "the apple"]
   },
 
   "Russian" => {
-    "человек" => "the man",
-    "женщина" => "the woman",
-    "мальчик" => "the boy",
-    "девушка" => "the girl",
-    "собака" => "the dog",
-    "Кот" => "the cat",
-    "яблоко" => "the apple"
+    front: ["человек", "женщина", "мальчик", "девушка", "собака", "Кот", "яблоко"],
+    back: ["the man", "the woman", "the boy", "the girl", "the dog", "the cat", "the apple"]
   }
 }
 
-languages = data.keys
-flashcards = data.values
-
 def add_users(users)
-  users.each do |user|
-    unless User.find_by(email: user)
-      User.create!(email: user, password: 'secret', password_confirmation: 'secret')
+  users.each do |email|
+    unless User.find_by(email: email)
+      User.create!(email: email, password: 'secret', password_confirmation: 'secret')
     end
   end
 end
 
-def add_languages(languages, flashcards)
-  languages.each do |name|
+def add_languages(languages)
+  languages.keys.each do |name|
     unless Language.find_by(name: name)
       language = Language.create(name: name)
-      add_flashcards(language, flashcards)
+      add_flashcards(languages, language)
     end
   end
 end
 
-def add_flashcards(language, flashcards)
-  language.flashcards.create!(front: front, back: back)
+def add_flashcards(languages, language)
+  number_of_flashcards = languages[language.name][:front].count
+  number_of_flashcards.times do |n|
+    front = languages[language.name][:front][n]
+    back = languages[language.name][:back][n]
+    language.flashcards.create!(front: front, back: back)
+  end
 end
 
 add_users(users)
