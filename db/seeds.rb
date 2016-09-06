@@ -1,3 +1,4 @@
+admin = "admin@fishcards.com"
 users = %w(alpha@fishcards.com bravo@fishcards.com charlie@fishcards.com)
 
 languages = {
@@ -37,6 +38,12 @@ languages = {
   }
 }
 
+def add_admin(admin)
+  unless User.find_by(email: admin)
+    User.create!(email: admin, password: 'super_secret', password_confirmation: 'super_secret', admin?: true)
+  end
+end
+
 def add_users(users)
   users.each do |email|
     unless User.find_by(email: email)
@@ -63,5 +70,6 @@ def add_flashcards(languages, language)
   end
 end
 
+add_admin(admin)
 add_users(users)
 add_languages(languages)
