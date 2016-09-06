@@ -9,6 +9,11 @@ p
     | Back:
   = @flashcard.back
 
+p
+  strong
+    | Author:
+  = current_user.email
+
 = link_to 'Edit', edit_user_language_flashcard_path
 = link_to 'Delete', user_language_flashcard_path(@language, @flashcard), method: :delete
 = link_to 'Back', user_languages_path
