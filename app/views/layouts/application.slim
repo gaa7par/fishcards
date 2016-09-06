@@ -8,4 +8,7 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
   body
+    - if current_user
+      = current_user.email
     == yield
+
