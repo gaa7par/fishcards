@@ -15,7 +15,7 @@ class User::FlashcardsController < ApplicationController
   end
 
   def create
-    @flashcard = @language.flashcards.new(flashcard_params)
+    @flashcard = @language.flashcards.new(flashcard_params.merge(user_id: current_user.id))
 
     if @flashcard.save
       redirect_to [:user, @language, @flashcard]

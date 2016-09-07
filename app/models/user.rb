@@ -4,5 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :languages, dependent: :destroy
+  has_many :languages
+  has_many :flashcards
 end
