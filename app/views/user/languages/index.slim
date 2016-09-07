@@ -1,9 +1,10 @@
 h2 Languages
 
+- if current_user.admin?
+  = link_to 'New language', new_user_language_path(@language)
+
 ul
   - @languages.each do |language|
     li
       = language.name
       = link_to 'Show', user_language_path(language)
-
-= link_to 'New language', new_user_language_path(@language)

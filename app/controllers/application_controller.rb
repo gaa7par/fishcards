@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
   def not_authorized
-    redirect_to root_path, notice: "Some text"
+    redirect_to root_path, notice: "Permission denied!"
   end
 end
