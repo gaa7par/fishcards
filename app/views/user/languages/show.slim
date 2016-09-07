@@ -1,10 +1,9 @@
 h2
   = @language.name
 
-p
+- if current_user.admin?
   = link_to 'Edit', edit_user_language_path
   = link_to 'Delete', user_language_path(@language), method: :delete
-  = link_to 'Back', user_languages_path
 
 - @flashcards.each do |flashcard|
   p
@@ -15,3 +14,4 @@ p
     = link_to 'Show', user_language_flashcard_path(@language, flashcard)
 
 = link_to 'New flashcard', new_user_language_flashcard_path(@language)
+= link_to 'Back', user_languages_path

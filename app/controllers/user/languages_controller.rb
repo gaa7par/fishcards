@@ -22,6 +22,7 @@ class User::LanguagesController < ApplicationController
   def create
     @language = current_user.languages.new(language_params)
 
+    authorize @language
     if @language.save
       redirect_to [:user, @language]
     else
@@ -32,6 +33,7 @@ class User::LanguagesController < ApplicationController
   def update
     @language = Language.find(params[:id])
 
+    authorize @language
     if @language.update(language_params)
       redirect_to [:user, @language]
     else
@@ -41,9 +43,13 @@ class User::LanguagesController < ApplicationController
 
   def destroy
     @language = Language.find(params[:id])
-    @language.destroy
 
-    redirect_to [:user, @language]
+    authorize @language
+    if @language.destroy
+      redirect_to [:user, @language]
+    else
+      render 'index'
+    end
   end
 
   private

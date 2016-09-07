@@ -15,8 +15,9 @@ class User::FlashcardsController < ApplicationController
   end
 
   def create
-    @flashcard = @language.flashcards.new(flashcard_params)
+    @flashcard = @language.flashcards.new(flashcard_params.merge(user_id: current_user.id))
 
+    authorize @flashcard
     if @flashcard.save
       redirect_to [:user, @language, @flashcard]
     else
@@ -27,6 +28,7 @@ class User::FlashcardsController < ApplicationController
   def update
     @flashcard = Flashcard.find(params[:id])
 
+    authorize @flashcard
     if @flashcard.update(flashcard_params)
       redirect_to [:user, @language, @flashcard]
     else
@@ -36,9 +38,13 @@ class User::FlashcardsController < ApplicationController
 
   def destroy
     @flashcard = Flashcard.find(params[:id])
-    @flashcard.destroy
 
-    redirect_to [:user, @language]
+    authorize @flashcard
+    if @flashcard.destroy
+      redirect_to [:user, @language]
+    else
+      render 'index'
+    end
   end
 
   private

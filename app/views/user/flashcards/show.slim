@@ -1,4 +1,9 @@
 h2 Flashcard
+
+- if current_user == @flashcard.user or current_user.admin?
+  = link_to 'Edit', edit_user_language_flashcard_path
+  = link_to 'Delete', user_language_flashcard_path(@language, @flashcard), method: :delete
+
 p
   strong
     | Front:
@@ -9,6 +14,10 @@ p
     | Back:
   = @flashcard.back
 
-= link_to 'Edit', edit_user_language_flashcard_path
-= link_to 'Delete', user_language_flashcard_path(@language, @flashcard), method: :delete
+p
+  - if @flashcard.user
+    strong
+      | Author:
+    = @flashcard.user.email
+
 = link_to 'Back', user_languages_path
