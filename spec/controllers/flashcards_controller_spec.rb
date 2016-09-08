@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User::FlashcardsController, type: :controller do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, admin?: true) }
   before { sign_in user }
 
   describe '#show' do
@@ -117,7 +117,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
     context 'after request' do
       before { call_request }
 
-      it { should redirect_to user_languages_path }
+      it { should redirect_to user_language_path(language) }
     end
   end
 end

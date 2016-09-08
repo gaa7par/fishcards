@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User::LanguagesController, type: :controller do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, admin?: true) }
   before { sign_in user }
 
   describe '#index' do
@@ -122,4 +122,3 @@ RSpec.describe User::LanguagesController, type: :controller do
     end
   end
 end
-
