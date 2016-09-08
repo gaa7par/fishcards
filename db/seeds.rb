@@ -40,7 +40,7 @@ languages = {
 
 def add_admin(admin)
   unless User.find_by(email: admin)
-    User.create!(email: admin, password: 'super_secret', password_confirmation: 'super_secret', admin?: true)
+    User.create!(email: admin, password: 'super_secret', password_confirmation: 'super_secret', admin: true)
   end
 end
 
