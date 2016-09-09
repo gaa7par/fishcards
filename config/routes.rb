@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'home#index'
+  root 'home#show'
+
+  resource :home, only: :show
 
   namespace :user do
     resources :languages do
-      resources :flashcards
+      resources :flashcards, except: :index
     end
+    resources :quizzes
   end
 
   resources :users

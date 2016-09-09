@@ -4,7 +4,7 @@ RSpec.describe LanguagePolicy do
 
   subject { described_class }
 
-  permissions :create?, :update?, :destroy? do
+  permissions :new?, :edit?, :create?, :update?, :destroy? do
     it "grants access if user is an admin" do
       expect(subject).to permit(User.new(admin: true))
     end

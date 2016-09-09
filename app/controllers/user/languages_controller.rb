@@ -1,22 +1,23 @@
 class User::LanguagesController < ApplicationController
   before_action :authenticate_user!
 
+  before_action :get_language, only: [:show, :edit, :update, :destroy]
+
   def index
     @languages = Language.all
   end
 
   def show
-    @language = Language.find(params[:id])
-
     @flashcards = @language.flashcards.where.not(id: nil)
   end
 
   def new
+    authorize @language
     @language = Language.new
   end
 
   def edit
-    @language = Language.find(params[:id])
+    authorize @language
   end
 
   def create
@@ -31,8 +32,6 @@ class User::LanguagesController < ApplicationController
   end
 
   def update
-    @language = Language.find(params[:id])
-
     authorize @language
     if @language.update(language_params)
       redirect_to [:user, @language]
@@ -42,8 +41,6 @@ class User::LanguagesController < ApplicationController
   end
 
   def destroy
-    @language = Language.find(params[:id])
-
     authorize @language
     if @language.destroy
       redirect_to [:user, @language]
@@ -56,5 +53,9 @@ class User::LanguagesController < ApplicationController
 
   def language_params
     params.require(:language).permit(:name)
+  end
+
+  def get_language
+    @language = Language.find(params[:id])
   end
 end

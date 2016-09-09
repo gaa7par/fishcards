@@ -1,9 +1,10 @@
 class User::FlashcardsController < ApplicationController
   before_action :authenticate_user!
+
   before_action :get_language
+  before_action :get_flashcard, only: [:show, :edit, :update, :destroy]
 
   def show
-    @flashcard = Flashcard.find(params[:id])
   end
 
   def new
@@ -11,13 +12,12 @@ class User::FlashcardsController < ApplicationController
   end
 
   def edit
-    @flashcard = Flashcard.find(params[:id])
+    authorize @flashcard
   end
 
   def create
     @flashcard = @language.flashcards.new(flashcard_params.merge(user_id: current_user.id))
 
-    authorize @flashcard
     if @flashcard.save
       redirect_to [:user, @language, @flashcard]
     else
@@ -26,8 +26,6 @@ class User::FlashcardsController < ApplicationController
   end
 
   def update
-    @flashcard = Flashcard.find(params[:id])
-
     authorize @flashcard
     if @flashcard.update(flashcard_params)
       redirect_to [:user, @language, @flashcard]
@@ -37,8 +35,6 @@ class User::FlashcardsController < ApplicationController
   end
 
   def destroy
-    @flashcard = Flashcard.find(params[:id])
-
     authorize @flashcard
     if @flashcard.destroy
       redirect_to [:user, @language]
@@ -55,5 +51,9 @@ class User::FlashcardsController < ApplicationController
 
   def get_language
     @language = Language.find(params[:language_id])
+  end
+
+  def get_flashcard
+    @flashcard = Flashcard.find(params[:id])
   end
 end
