@@ -53,20 +53,22 @@ def add_users(users)
 end
 
 def add_languages(languages)
+  admin = User.find_by(email: "admin@fishcards.com")
+
   languages.keys.each do |name|
     unless Language.find_by(name: name)
-      language = Language.create(name: name)
-      add_flashcards(languages, language)
+      language = admin.languages.create(name: name)
+      add_flashcards(languages, language, admin)
     end
   end
 end
 
-def add_flashcards(languages, language)
+def add_flashcards(languages, language, admin)
   number_of_flashcards = languages[language.name][:front].count
   number_of_flashcards.times do |n|
     front = languages[language.name][:front][n]
     back = languages[language.name][:back][n]
-    language.flashcards.create!(front: front, back: back)
+    language.flashcards.create!(front: front, back: back, user_id: admin.id )
   end
 end
 
