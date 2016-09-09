@@ -1,9 +1,4 @@
 class LanguagePolicy < ApplicationPolicy
-
-  def new?
-    user.admin
-  end
-
   def edit?
     user.admin
   end

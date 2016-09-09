@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe QuizzesController, type: :controller do
+# RSpec.describe QuizzesController, type: :controller do
 
-end
+# end

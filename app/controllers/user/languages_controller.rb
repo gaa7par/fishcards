@@ -10,7 +10,6 @@ class User::LanguagesController < User::UserController
   end
 
   def new
-    authorize @language
     @language = Language.new
   end
 
