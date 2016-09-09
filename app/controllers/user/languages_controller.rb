@@ -1,6 +1,4 @@
-class User::LanguagesController < ApplicationController
-  before_action :authenticate_user!
-
+class User::LanguagesController < User::UserController
   before_action :get_language, only: [:show, :edit, :update, :destroy]
 
   def index

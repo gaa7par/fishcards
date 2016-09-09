@@ -1,6 +1,4 @@
-class User::FlashcardsController < ApplicationController
-  before_action :authenticate_user!
-
+class User::FlashcardsController < User::UserController
   before_action :get_language
   before_action :get_flashcard, only: [:show, :edit, :update, :destroy]
 

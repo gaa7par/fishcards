@@ -1,3 +1,2 @@
-class User::QuizzesController < ApplicationController
-  before_action :authenticate_user!
+class User::QuizzesController < User::UserController
 end
