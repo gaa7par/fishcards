@@ -6,7 +6,7 @@ RSpec.describe FlashcardPolicy do
 
   subject { described_class }
 
-  permissions :create?, :update?, :destroy? do
+  permissions :edit?, :update?, :destroy? do
     it "grants access if flashcard is created by current user" do
       expect(subject).to permit(user, user.flashcards.new)
     end

@@ -1,8 +1,9 @@
 class FlashcardPolicy < ApplicationPolicy
-  def create?
+
+  def edit?
     record.user == user or user.admin
   end
-
+  
   def update?
     record.user == user or user.admin
   end

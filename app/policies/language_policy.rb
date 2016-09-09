@@ -1,4 +1,8 @@
 class LanguagePolicy < ApplicationPolicy
+  def edit?
+    user.admin
+  end
+
   def create?
     user.admin
   end

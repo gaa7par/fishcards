@@ -16,7 +16,7 @@ RSpec.describe User::LanguagesController, type: :controller do
 
   describe '#show' do
     let(:call_request) { get :show, id: language.id }
-    let!(:language) { create(:language) }
+    let!(:language) { create(:language, user_id: user.id) }
 
     context 'after request' do
       before { call_request }
@@ -39,7 +39,7 @@ RSpec.describe User::LanguagesController, type: :controller do
 
   describe '#edit' do
     let(:call_request) { get :edit, id: language.id }
-    let!(:language) { create(:language) }
+    let!(:language) { create(:language, user_id: user.id) }
 
     context 'after request' do
       before { call_request }
@@ -53,7 +53,7 @@ RSpec.describe User::LanguagesController, type: :controller do
     let(:call_request) { post :create, language: attributes }
 
     context 'valid request' do
-      let(:attributes) { attributes_for(:language, name: 'Spanish') }
+      let(:attributes) { attributes_for(:language, name: 'Spanish', user_id: user.id) }
 
       it { expect { call_request }.to change { Language.count }.by(1) }
 
@@ -67,7 +67,7 @@ RSpec.describe User::LanguagesController, type: :controller do
       end
 
       context 'invalid request' do
-        let(:attributes) { attributes_for(:language, name: nil) }
+        let(:attributes) { attributes_for(:language, name: nil, user_id: nil) }
 
         it { expect { call_request }.not_to change { Language.count } }
 
@@ -81,11 +81,11 @@ RSpec.describe User::LanguagesController, type: :controller do
   end
 
   describe '#update' do
-    let(:language) { create(:language, name: 'Spanish') }
+    let(:language) { create(:language, name: 'Spanish', user_id: user.id) }
     let(:call_request) { put :update, language: attributes, id: language.id }
 
     context 'valid request' do
-      let(:attributes) { attributes_for(:language, name: 'French') }
+      let(:attributes) { attributes_for(:language, name: 'French', user_id: user.id) }
 
       it { expect { call_request }.to change { language.reload.name }.from('Spanish').to('French') }
 
@@ -97,7 +97,7 @@ RSpec.describe User::LanguagesController, type: :controller do
     end
 
     context 'invalid request' do
-      let(:attributes) { attributes_for(:language, name: nil) }
+      let(:attributes) { attributes_for(:language, name: nil, user_id: user.id) }
 
       it { expect { call_request }.not_to change { language.reload.name } }
 
@@ -111,7 +111,7 @@ RSpec.describe User::LanguagesController, type: :controller do
 
   describe '#destroy' do
     let(:call_request) { delete :destroy, id: language.id }
-    let!(:language) { create(:language) }
+    let!(:language) { create(:language, user_id: user.id) }
 
     it { expect { call_request }.to change { Language.count }.by(-1) }
 

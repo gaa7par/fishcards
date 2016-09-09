@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe User::FlashcardsController, type: :controller do
   let(:user) { create(:user, admin: true) }
+  let(:language) { create(:language, user_id: user.id) }
   before { sign_in user }
 
   describe '#show' do
-    let(:language) { create(:language) }
     let(:call_request) { get :show, id: flashcard.id, language_id: language.id }
-    let!(:flashcard) { create(:flashcard) }
+    let!(:flashcard) { create(:flashcard, user_id: user.id, language_id: language.id) }
 
     context 'after request' do
       before { call_request }
@@ -18,7 +18,6 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#new' do
-    let(:language) { create(:language) }
     let(:call_request) { get :new, language_id: language.id }
 
     context 'after request' do
@@ -30,9 +29,8 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#edit' do
-    let(:language) { create(:language) }
     let(:call_request) { get :edit, id: flashcard.id, language_id: language.id }
-    let!(:flashcard) { create(:flashcard) }
+    let!(:flashcard) { create(:flashcard, user_id: user.id, language_id: language.id) }
 
     context 'after request' do
       before { call_request }
@@ -43,11 +41,10 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#create' do
-    let(:language) { create(:language) }
     let(:call_request) { post :create, flashcard: attributes, language_id: language.id }
 
     context 'valid request' do
-      let(:attributes) { attributes_for(:flashcard, front: 'el chico', back: 'the boy') }
+      let(:attributes) { attributes_for(:flashcard, front: 'el chico', back: 'the boy', user_id: user.id, language_id: language.id) }
 
       it { expect { call_request }.to change { Flashcard.count }.by(1) }
 
@@ -62,7 +59,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
       end
 
       context 'invalid request' do
-        let(:attributes) { attributes_for(:flashcard, front: nil, back: nil) }
+        let(:attributes) { attributes_for(:flashcard, front: nil, back: nil, user_id: nil, language_id: nil) }
 
         it { expect { call_request }.not_to change { Flashcard.count } }
 
@@ -76,12 +73,11 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#update' do
-    let(:language) { create(:language) }
-    let(:flashcard) { create(:flashcard, front: 'el chico', back: 'the boy') }
+    let(:flashcard) { create(:flashcard, front: 'el chico', back: 'the boy', user_id: user.id, language_id: language.id) }
     let(:call_request) { put :update, flashcard: attributes, id: flashcard.id, language_id: language.id }
 
     context 'valid request' do
-      let(:attributes) { attributes_for(:flashcard, front: 'la chica', back: 'the girl') }
+      let(:attributes) { attributes_for(:flashcard, front: 'la chica', back: 'the girl', user_id: user.id, language_id: language.id) }
 
       it { expect { call_request }.to change { flashcard.reload.front }.from('el chico').to('la chica') }
       it { expect { call_request }.to change { flashcard.reload.back }.from('the boy').to('the girl') }
@@ -94,7 +90,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
     end
 
     context 'invalid request' do
-      let(:attributes) { attributes_for(:flashcard, front: nil, back: nil) }
+      let(:attributes) { attributes_for(:flashcard, front: nil, back: nil, user_id: user.id, language_id: language.id) }
 
       it { expect { call_request }.not_to change { flashcard.reload.front } }
       it { expect { call_request }.not_to change { flashcard.reload.back } }
@@ -108,9 +104,8 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#destroy' do
-    let(:language) { create(:language) }
     let(:call_request) { delete :destroy, id: flashcard.id, language_id: language.id }
-    let!(:flashcard) { create(:flashcard) }
+    let!(:flashcard) { create(:flashcard, user_id: user.id, language_id: language.id) }
 
     it { expect { call_request }.to change { Flashcard.count }.by(-1) }
 
