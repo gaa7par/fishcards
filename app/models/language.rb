@@ -4,7 +4,7 @@ class Language < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :user_id, presence: true
 
-  def quiz(number = 5)
+  def quiz(number = 1)
     flashcards.all.shuffle[0..number - 1]
   end
 end

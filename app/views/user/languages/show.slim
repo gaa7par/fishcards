@@ -1,24 +1,38 @@
 h2
   = @language.name
   
-- @language.quiz.each do |quiz|
-  p
-    = quiz.front
-
+form id="quiz"
+  - @language.quiz.each do |quiz|
+    p
+      = quiz.front
+      =>
+      input type="text"
+      input type="button" id="check" value="Check"
+    
+  input type="button" id="switch" value="Switch"
+      
+javascript:
+  $(document).ready(function() {
+    $("#switch").click(function() {
+    $("#list").toggle()
+    })
+  })
+    
 - if current_user.admin
   = link_to 'Edit', edit_user_language_path
   =>
   = link_to 'Delete', user_language_path(@language), method: :delete
   =>
 
-- @flashcards.each do |flashcard|
-  p
-    strong
-      = flashcard.front
-    =>
-    = flashcard.back
-    =>
-    = link_to 'Show', user_language_flashcard_path(@language, flashcard)
+div id="list"
+  - @flashcards.each do |flashcard|
+    p
+      strong
+        = flashcard.front
+        =>
+      = flashcard.back
+      =>
+      = link_to 'Show', user_language_flashcard_path(@language, flashcard)
 
 = link_to 'New flashcard', new_user_language_flashcard_path(@language)
 =>
