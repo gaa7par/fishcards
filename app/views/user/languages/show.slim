@@ -2,19 +2,30 @@ h2
   = @language.name
   
 form id="quiz"
-  - @language.quiz.each do |quiz|
-    p
-      = quiz.front
-      =>
-      input type="text"
-      input type="button" id="check" value="Check"
-    
+  = @language.random_flashcard.front
+  =>
+  input type="text"
+  
+  br
+  	
   input type="button" id="switch" value="Show flashcards"
+  
+span id="result"
       
 javascript:
   $(document).ready(function() {
     $("#switch").click(function() {
       $("#list").toggle(1000);
+    });
+    
+    $("#quiz").submit(function(event) {
+      if ($("input:first").val() === "correct") {
+        $("#result").text("Validated!").show();
+        return;
+      }
+      
+      $("#result").text("Not valid!").show();
+      event.reventDefault();
     });
   });
     
