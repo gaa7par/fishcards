@@ -9,14 +9,14 @@ form id="quiz"
       input type="text"
       input type="button" id="check" value="Check"
     
-  input type="button" id="switch" value="Switch"
+  input type="button" id="switch" value="Show flashcards"
       
 javascript:
   $(document).ready(function() {
     $("#switch").click(function() {
-    $("#list").toggle()
-    })
-  })
+      $("#list").toggle(1000);
+    });
+  });
     
 - if current_user.admin
   = link_to 'Edit', edit_user_language_path
