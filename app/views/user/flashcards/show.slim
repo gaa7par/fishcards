@@ -1,9 +1,10 @@
 h2 Flashcard
 
-- if current_user == @flashcard.user or current_user.admin
+- if policy(@flashcard).edit?
   = link_to 'Edit', edit_user_language_flashcard_path
-  =>
-  = link_to 'Delete', user_language_flashcard_path(@language, @flashcard), method: :delete, data: { confirm: "Are you sure?"}
+  
+- if policy(@flashcard).destroy?
+  = link_to 'Delete', user_language_flashcard_path(@language, @flashcard), method: :delete, data: { confirm: "Are you sure?" }
 
 p
   strong

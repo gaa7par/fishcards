@@ -18,11 +18,11 @@ javascript:
     });
   });
     
-- if current_user.admin
+- if policy(@language).update?
   = link_to 'Edit', edit_user_language_path
-  =>
-  = link_to 'Delete', user_language_path(@language), method: :delete
-  =>
+  
+- if policy(@language).destroy?
+  = link_to 'Delete', user_language_path(@language), method: :delete, data: { confirm: "Are you sure?" }
 
 div id="list"
   - @flashcards.each do |flashcard|
