@@ -1,31 +1,17 @@
 h2
   = @language.name
   
-form id="quiz"
-  = @language.random_flashcard.front
-  =>
-  input type="text"
+- flashcard = @language.random_flashcard
+
+= form_tag(check_answer_user_flashcard_path(flashcard), method: :get, remote: true)
+  = label_tag(flashcard.front)
+  = text_field_tag(:back)
+  = submit_tag("Enter")
   
-  br
-  	
-  input type="button" id="switch" value="Show flashcards"
-  
-span id="result"
-      
 javascript:
   $(document).ready(function() {
     $("#switch").click(function() {
       $("#list").toggle(1000);
-    });
-    
-    $("#quiz").submit(function(event) {
-      if ($("input:first").val() === "correct") {
-        $("#result").text("Validated!").show();
-        return;
-      }
-      
-      $("#result").text("Not valid!").show();
-      event.reventDefault();
     });
   });
     
@@ -35,6 +21,9 @@ javascript:
 - if policy(@language).destroy?
   = link_to 'Delete', user_language_path(@language), method: :delete, data: { confirm: "Are you sure?" }
 
+form
+  input type="button" id="switch" value="Show flashcards"
+  
 div id="list"
   - @flashcards.each do |flashcard|
     p

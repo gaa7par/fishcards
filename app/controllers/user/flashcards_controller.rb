@@ -1,5 +1,5 @@
 class User::FlashcardsController < User::UserController
-  before_action :get_language
+  before_action :get_language, except: :check_answer
   before_action :get_flashcard, only: [:show, :edit, :update, :destroy]
 
   def show
@@ -40,6 +40,11 @@ class User::FlashcardsController < User::UserController
       render 'index'
     end
   end
+
+  def check_answer
+    binding.pry
+  end
+
 
   private
 
