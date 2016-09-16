@@ -3,4 +3,8 @@ class Language < ApplicationRecord
   has_many :flashcards, dependent: :destroy
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :user_id, presence: true
+
+  def random_flashcard
+    flashcards.all[rand(flashcards.all.size)]
+  end
 end

@@ -1,3 +1,5 @@
 = simple_form_for [:user, @language] do |f|
   = f.input :name
   = f.button :submit
+
+= link_to 'Back', user_languages_path
