@@ -115,4 +115,31 @@ RSpec.describe User::FlashcardsController, type: :controller do
       it { should redirect_to user_language_path(language) }
     end
   end
+
+  describe '#check_answer' do
+    let(:call_request) { xhr :get, :check_answer, id: flashcard.id, back: back }
+    let!(:flashcard) { create(:flashcard, front: 'el chico', back: 'the boy', user_id: user.id, language_id: language.id) }
+
+    context 'correct answer' do
+      let(:back) { 'the boy' }
+      it { expect { call_request }.to change { user.points }.by(1) }
+
+      context 'after request' do
+        before { call_request }
+
+        it { should render :check_answer }
+      end
+    end
+
+    context 'incorrect answer' do
+      let(:back) { 'the girl' }
+      it { expect { call_request }.not_to change { user.points } }
+
+      context 'after request' do
+        before { call_request }
+
+        it { should render :correct }
+      end
+    end
+  end
 end
