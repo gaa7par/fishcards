@@ -12,13 +12,6 @@ span id="check_answer"
 =>
 span id="correct"
 
-javascript:
-  $(document).ready(function() {
-    $("#switch").click(function() {
-      $("#list").toggle();
-    });
-  });
-    
 - if policy(@language).update?
   = link_to 'Edit', edit_user_language_path
   
