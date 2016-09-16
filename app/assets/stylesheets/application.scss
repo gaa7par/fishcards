@@ -1,6 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+#check_answer {
+  color: red;
+}
+
+#correct {
+  color: green;
+}
+
 #list {
   display: none;
 }

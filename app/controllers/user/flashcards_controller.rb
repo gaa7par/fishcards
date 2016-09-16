@@ -1,6 +1,8 @@
 class User::FlashcardsController < User::UserController
   before_action :get_language, except: :check_answer
-  before_action :get_flashcard, only: [:show, :edit, :update, :destroy]
+  before_action :get_flashcard, only: [:show, :edit, :update, :destroy, :check_answer]
+
+  respond_to :html, :json
 
   def show
   end
@@ -42,9 +44,12 @@ class User::FlashcardsController < User::UserController
   end
 
   def check_answer
-    binding.pry
+    if @flashcard.back == params[:back]
+      render :correct, layout: false
+    else
+      render :check_answer, layout: false
+    end
   end
-
 
   private
 
