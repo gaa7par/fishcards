@@ -1,10 +1,17 @@
 h2
   = @language.name
   
+strong
+  | My points:
+  =>
+  
+= current_user.points
+
 - flashcard = @language.random_flashcard
 
 = form_tag(check_answer_user_flashcard_path(flashcard), method: 'get', remote: true)
   = label_tag(flashcard.front)
+  =>
   = text_field_tag(:back)
   = submit_tag("Enter")
   
