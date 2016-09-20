@@ -6,7 +6,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
   before { sign_in user }
 
   describe '#show' do
-    let(:call_request) { get :show, id: flashcard.id, language_id: language.id }
+    let(:call_request) { get :show, params: { id: flashcard.id, language_id: language.id } }
     let!(:flashcard) { create(:flashcard, user_id: user.id, language_id: language.id) }
 
     context 'after request' do
@@ -18,7 +18,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#new' do
-    let(:call_request) { get :new, language_id: language.id }
+    let(:call_request) { get :new, params: { language_id: language.id } }
 
     context 'after request' do
       before { call_request }
@@ -29,7 +29,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#edit' do
-    let(:call_request) { get :edit, id: flashcard.id, language_id: language.id }
+    let(:call_request) { get :edit, params: { id: flashcard.id, language_id: language.id } }
     let!(:flashcard) { create(:flashcard, user_id: user.id, language_id: language.id) }
 
     context 'after request' do
@@ -41,7 +41,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#create' do
-    let(:call_request) { post :create, flashcard: attributes, language_id: language.id }
+    let(:call_request) { post :create, params: { flashcard: attributes, language_id: language.id } }
 
     context 'valid request' do
       let(:attributes) { attributes_for(:flashcard, front: 'el chico', back: 'the boy', user_id: user.id, language_id: language.id) }
@@ -74,7 +74,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
 
   describe '#update' do
     let(:flashcard) { create(:flashcard, front: 'el chico', back: 'the boy', user_id: user.id, language_id: language.id) }
-    let(:call_request) { put :update, flashcard: attributes, id: flashcard.id, language_id: language.id }
+    let(:call_request) { put :update, params: { flashcard: attributes, id: flashcard.id, language_id: language.id } }
 
     context 'valid request' do
       let(:attributes) { attributes_for(:flashcard, front: 'la chica', back: 'the girl', user_id: user.id, language_id: language.id) }
@@ -104,7 +104,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#destroy' do
-    let(:call_request) { delete :destroy, id: flashcard.id, language_id: language.id }
+    let(:call_request) { delete :destroy, params: { id: flashcard.id, language_id: language.id } }
     let!(:flashcard) { create(:flashcard, user_id: user.id, language_id: language.id) }
 
     it { expect { call_request }.to change { Flashcard.count }.by(-1) }
@@ -117,17 +117,17 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#check_answer' do
-    let(:call_request) { xhr :get, :check_answer, id: flashcard.id, back: back }
+    let(:call_request) { get :check_answer, xhr: true, params: { id: flashcard.id, back: back } }
     let!(:flashcard) { create(:flashcard, front: 'el chico', back: 'the boy', user_id: user.id, language_id: language.id) }
 
     context 'correct answer' do
       let(:back) { 'the boy' }
-      it { expect { call_request }.to change { user.points }.by(1) }
+      it { expect { call_request }.to change { user.reload.points }.by(1) }
 
       context 'after request' do
         before { call_request }
 
-        it { should render :check_answer }
+        it { expect(response.body).to include "Correct!" }
       end
     end
 
@@ -138,7 +138,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
       context 'after request' do
         before { call_request }
 
-        it { should render :correct }
+        it { expect(response.body).to include flashcard.back }
       end
     end
   end

@@ -15,14 +15,16 @@ RSpec.describe User::LanguagesController, type: :controller do
   end
 
   describe '#show' do
-    let(:call_request) { get :show, id: language.id }
     let!(:language) { create(:language, user_id: user.id) }
+    let!(:flashcard) { create(:flashcard, user_id: user.id, language_id: language.id) }
+
+    let(:call_request) { get :show, params: { id: language.id } }
 
     context 'after request' do
       before { call_request }
 
       it { should render_template 'show' }
-      it { expect(assigns(:language)).to eq language }
+       it { expect(assigns(:language)).to eq language }
     end
   end
 
@@ -38,7 +40,7 @@ RSpec.describe User::LanguagesController, type: :controller do
   end
 
   describe '#edit' do
-    let(:call_request) { get :edit, id: language.id }
+    let(:call_request) { get :edit, params: { id: language.id } }
     let!(:language) { create(:language, user_id: user.id) }
 
     context 'after request' do
@@ -50,7 +52,7 @@ RSpec.describe User::LanguagesController, type: :controller do
   end
 
   describe '#create' do
-    let(:call_request) { post :create, language: attributes }
+    let(:call_request) { post :create, params: { language: attributes } }
 
     context 'valid request' do
       let(:attributes) { attributes_for(:language, name: 'Spanish', user_id: user.id) }
@@ -82,7 +84,7 @@ RSpec.describe User::LanguagesController, type: :controller do
 
   describe '#update' do
     let(:language) { create(:language, name: 'Spanish', user_id: user.id) }
-    let(:call_request) { put :update, language: attributes, id: language.id }
+    let(:call_request) { put :update, params: { language: attributes, id: language.id } }
 
     context 'valid request' do
       let(:attributes) { attributes_for(:language, name: 'French', user_id: user.id) }
@@ -110,7 +112,7 @@ RSpec.describe User::LanguagesController, type: :controller do
   end
 
   describe '#destroy' do
-    let(:call_request) { delete :destroy, id: language.id }
+    let(:call_request) { delete :destroy, params: { id: language.id } }
     let!(:language) { create(:language, user_id: user.id) }
 
     it { expect { call_request }.to change { Language.count }.by(-1) }

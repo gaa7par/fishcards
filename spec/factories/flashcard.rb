@@ -3,7 +3,7 @@ FactoryGirl.define do
     sequence(:front) { |n| "name-#{n}" }
     sequence(:back) { |n| "name-#{n}" }
 
-    user_id 1
-    language_id 1
+    user_id { create(:user).id }
+    language_id { create(:language).id }
   end
 end
