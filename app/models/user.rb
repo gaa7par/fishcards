@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :languages
   has_many :flashcards
+
+  validates :name, presence: true, uniqueness: true, length: { maximum: 24 }
 end
