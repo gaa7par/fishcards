@@ -1,0 +1,12 @@
+h2
+  = @user.email
+
+strong
+  | Total points:
+  =>
+
+= @user.points
+
+br
+
+= link_to 'Edit profile', edit_user_registration_path(@user)
