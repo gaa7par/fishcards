@@ -1,0 +1,20 @@
+h2
+  = @user.name
+
+= gravatar_image_tag(@user.email)
+
+br
+
+strong
+  | Total points:
+  =>
+
+= @user.points
+
+br
+
+- if @user == current_user
+  = link_to 'Edit profile', edit_user_registration_path(@user)
+  =>
+  
+= link_to 'Back', user_languages_path

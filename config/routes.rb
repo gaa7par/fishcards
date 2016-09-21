@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
 
   root 'home#show'
 
@@ -16,5 +16,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users, only: [:index, :show]
 end

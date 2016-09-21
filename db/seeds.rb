@@ -1,5 +1,5 @@
-admin = "admin@fishcards.com"
-users = %w(alpha@fishcards.com bravo@fishcards.com charlie@fishcards.com)
+admin = "admin"
+users = %w(alpha bravo charlie delta echo foxtrot golf hotel india juliet kilo lima mike november oscar papa quebec romeo sierra tango uniform victor whiskey x-ray yankee zulu)
 
 languages = {
   "Spanish" => {
@@ -39,15 +39,15 @@ languages = {
 }
 
 def add_admin(admin)
-  unless User.find_by(email: admin)
-    User.create!(email: admin, password: 'super_secret', password_confirmation: 'super_secret', admin: true)
+  unless User.find_by(name: admin)
+    User.create!(name: admin, email: "#{admin}@fishcards.com", password: 'super_secret', password_confirmation: 'super_secret', admin: true)
   end
 end
 
 def add_users(users)
-  users.each do |email|
-    unless User.find_by(email: email)
-      User.create!(email: email, password: 'secret', password_confirmation: 'secret')
+  users.each do |name|
+    unless User.find_by(name: name)
+      User.create!(name: name, email: "#{name}@example.com", password: 'secret', password_confirmation: 'secret')
     end
   end
 end
