@@ -1,6 +1,10 @@
 h2
   = @user.name
 
+= gravatar_image_tag(@user.email)
+
+br
+
 strong
   | Total points:
   =>
