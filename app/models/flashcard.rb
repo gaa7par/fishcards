@@ -5,4 +5,6 @@ class Flashcard < ApplicationRecord
   validates :front, presence: true, uniqueness: true
   validates :back, presence: true
   validates :user_id, :language_id, presence: true
+
+  paginates_per 25
 end
