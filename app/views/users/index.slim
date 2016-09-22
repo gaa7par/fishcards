@@ -1,8 +1,18 @@
-h2 Users
+h2 Top users
 
-ul
+ol
   - @users.each do |user|
     li 
-      = user.name
+      strong
+        = user.name
+      
+      br
+      = gravatar_image_tag(user.email)
+      
+      strong
+        | Total points:
+        
+      = user.points
       =>
+      
       = link_to 'Show', user_path(user)

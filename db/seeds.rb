@@ -40,14 +40,14 @@ languages = {
 
 def add_admin(admin)
   unless User.find_by(name: admin)
-    User.create!(name: admin, email: "#{admin}@fishcards.com", password: 'super_secret', password_confirmation: 'super_secret', admin: true)
+    User.create!(name: admin, email: "#{admin}@fishcards.com", password: 'super_secret', password_confirmation: 'super_secret', admin: true, points: 1000)
   end
 end
 
 def add_users(users)
   users.each do |name|
     unless User.find_by(name: name)
-      User.create!(name: name, email: "#{name}@example.com", password: 'secret', password_confirmation: 'secret')
+      User.create!(name: name, email: "#{name}@example.com", password: 'secret', password_confirmation: 'secret', points: rand(1000))
     end
   end
 end
