@@ -4,7 +4,7 @@ h2 Top users
   = f.search_field :name_cont
   = f.button :search
   
-ol
+ul
   - @users.each do |user|
     li 
       strong
@@ -15,8 +15,11 @@ ol
       
       strong
         | Total points:
+        =>
         
       = user.points
       =>
       
       = link_to 'Show', user_path(user)
+
+= paginate @users

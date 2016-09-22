@@ -37,6 +37,8 @@ div id="list"
       = flashcard.back
       =>
       = link_to 'Show', user_language_flashcard_path(@language, flashcard)
+  
+  = paginate @flashcards
 
 = link_to 'New flashcard', new_user_language_flashcard_path(@language)
 =>

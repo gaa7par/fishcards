@@ -5,6 +5,8 @@ class Language < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { maximum: 24 }
   validates :user_id, presence: true
 
+  paginates_per 10
+
   def random_flashcard
     flashcards.all[rand(flashcards.all.size)]
   end
