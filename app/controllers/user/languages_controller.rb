@@ -2,7 +2,8 @@ class User::LanguagesController < User::UserController
   before_action :get_language, only: [:show, :edit, :update, :destroy]
 
   def index
-    @languages = Language.all
+    @q = Language.ransack(params[:q])
+    @languages = @q.result(distinct: true)
   end
 
   def show
