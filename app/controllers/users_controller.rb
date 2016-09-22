@@ -1,6 +1,6 @@
 class UsersController < User::UserController
   def index
-    @users = User.all
+    @users = (User.all.sort_by { |user| user.points }).reverse
   end
 
   def show
