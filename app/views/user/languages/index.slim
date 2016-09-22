@@ -3,6 +3,10 @@ h2 Languages
 - if policy(Language.new).create?
   = link_to 'New language', new_user_language_path(@language)
 
+= search_form_for [:user, @q] do |f|
+  = f.search_field :name_cont
+  = f.button :search
+  
 ul
   - @languages.each do |language|
     li

@@ -42,4 +42,9 @@ div id="list"
 =>
 = link_to 'Back', user_languages_path
 
-javascript
+javascript:
+  $(document).ready(function() {
+    $("#switch").click(function() {
+      $("#list").toggle();
+    });
+  });
