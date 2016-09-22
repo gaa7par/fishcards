@@ -3,11 +3,11 @@ class User::LanguagesController < User::UserController
 
   def index
     @q = Language.ransack(params[:q])
-    @languages = @q.result(distinct: true)
+    @languages = @q.result(distinct: true).page(params[:page])
   end
 
   def show
-    @flashcards = @language.flashcards.where.not(id: nil)
+    @flashcards = @language.flashcards.where.not(id: nil).page(params[:page])
   end
 
   def new
