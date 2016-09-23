@@ -5,7 +5,8 @@ strong
   | My points:
   =>
   
-= current_user.points
+span id="points"
+  = current_user.points
 
 - flashcard = @language.random_flashcard
 
@@ -18,6 +19,8 @@ strong
 span id="check_answer"
 =>
 span id="correct"
+
+= link_to 'Next', user_language_path(@language)
 
 - if policy(@language).update?
   = link_to 'Edit', edit_user_language_path

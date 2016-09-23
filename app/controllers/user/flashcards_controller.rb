@@ -43,10 +43,10 @@ class User::FlashcardsController < User::UserController
 
   def check_answer
     if @flashcard.back.downcase == params[:back].downcase
-      render :correct, layout: false
-
       current_user.points += 1
       current_user.save!
+
+      render :correct, layout: false
     else
       render :check_answer, layout: false
     end
