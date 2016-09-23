@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :languages do
       resources :flashcards, except: :index
     end
-    
+
     resources :flashcards, only: [] do
       member do
         get :check_answer
