@@ -7,4 +7,6 @@ class Flashcard < ApplicationRecord
   validates :user_id, :language_id, presence: true
 
   paginates_per 25
+
+  ratyrate_rateable 'stars'
 end

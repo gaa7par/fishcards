@@ -22,6 +22,12 @@ p
   strong
     | Author:
     =>
-    = @flashcard.user.email
+  = @flashcard.user.email
+
+p
+  strong
+    | Stars:
+    =>
+    = rating_for @flashcard, 'stars'
 
 = link_to 'Back', user_languages_path
