@@ -13,10 +13,14 @@ html
       = alert
 
     - if current_user
-      = current_user.email
-      =>
-      = link_to 'Profile', user_path(current_user)
-      =>
-      = link_to 'Log out', destroy_user_session_path, method: :delete
+      header class="navbar navbar-fixed-top navbar-inverse"
+        nav
+          ul class="nav navbar-nav navbar-right"  
+            li
+              = link_to 'Profile', user_path(current_user)
 
-    == yield
+            li
+              = link_to 'Log out', destroy_user_session_path, method: :delete
+        
+    div class="container"
+      == yield
