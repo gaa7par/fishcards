@@ -13,6 +13,18 @@ strong
 
 br
 
+- if @rates.any?
+  strong
+    | My stars:
+    
+    ul
+    - @rates.each do |rate|
+      li 
+        = rate.rateable.front
+        =>
+        = rate.stars
+        br
+
 - if @user == current_user
   = link_to 'Edit profile', edit_user_registration_path(@user)
   =>
