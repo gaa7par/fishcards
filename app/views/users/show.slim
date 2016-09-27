@@ -17,13 +17,14 @@ br
   strong
     | My stars:
     
-    ul
-    - @rates.each do |rate|
-      li 
+  ul
+  - @rates.each do |rate|
+    li 
+      strong
         = rate.rateable.front
         =>
-        = rate.stars
-        br
+      = rate.stars
+      br
 
 - if @user == current_user
   = link_to 'Edit profile', edit_user_registration_path(@user)
