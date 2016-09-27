@@ -11,4 +11,6 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { maximum: 24 }
 
   paginates_per 5
+
+  ratyrate_rater
 end
