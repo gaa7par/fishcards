@@ -6,6 +6,6 @@ class UsersController < User::UserController
 
   def show
     @user = User.find(params[:id])
-    @rates = Rate.all.where(rater_id: @user.id)
+    @rates = Rate.all.where(rater_id: @user.id).page(params[:page])
   end
 end

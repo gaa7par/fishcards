@@ -1,4 +1,4 @@
-class Flashcard < ApplicationRecord
+  class Flashcard < ApplicationRecord
   belongs_to :user
   belongs_to :language
 
@@ -6,7 +6,7 @@ class Flashcard < ApplicationRecord
   validates :back, presence: true
   validates :user_id, :language_id, presence: true
 
-  paginates_per 25
+  paginates_per 10
 
   ratyrate_rateable 'stars'
 end
