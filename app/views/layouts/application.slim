@@ -12,10 +12,10 @@ html
       = notice
       = alert
 
-    - if current_user
-      header class="navbar navbar-fixed-top navbar-inverse"
-        nav
-          ul class="nav navbar-nav navbar-right"  
+    header class="navbar navbar-fixed-top navbar-inverse"
+      nav
+        ul class="nav navbar-nav navbar-right"  
+          - if current_user
             li
               = link_to 'Profile', user_path(current_user)
 

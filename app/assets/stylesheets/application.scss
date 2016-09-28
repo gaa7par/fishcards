@@ -16,13 +16,24 @@ body {
   background-color: white;
 }
 
-.title {
+.home {
   position: absolute;
   top: 50%;
   left: 50%;
 
   color: white;
-  text-shadow: 2px 2px black;
+}
+
+.title, .subtitle {
+  text-shadow: 3px 3px black;
+}
+
+.title {
+  font-size: 7em;
+}
+
+.subtitle {
+  font-size: 3em;
 }
 
 #check_answer {
