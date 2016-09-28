@@ -9,11 +9,32 @@ body {
   background-size: cover;
 }
 
-.container {
+.alerts {
   position: absolute;
-  top: 20%;
+  top: 5%;
 
-  background-color: white;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  color: white;
+}
+
+.menu {
+  float: left;
+
+  font-size: 2em;
+  color: white;
+
+  text-transform: uppercase;
+  letter-spacing: -1px;
+
+  padding-left: 3%;
+
+  font-weight: bold;
+
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
 }
 
 .home {
@@ -34,6 +55,13 @@ body {
 
 .subtitle {
   font-size: 3em;
+}
+
+.container {
+  position: absolute;
+  top: 20%;
+
+  background-color: white;
 }
 
 #check_answer {
