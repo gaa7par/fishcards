@@ -60,8 +60,10 @@ body {
 .container {
   position: absolute;
   top: 20%;
+  left: 10%;
 
-  background-color: white;
+  color: white;
+  text-shadow: 2px 2px black;
 }
 
 #check_answer {

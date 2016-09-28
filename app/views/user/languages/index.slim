@@ -1,14 +1,21 @@
 h2 Languages
 
+br
+
 - if policy(Language.new).create?
   = link_to 'New language', new_user_language_path(@language), class: 'btn btn-warning'
+  br
+  br
 
 = search_form_for [:user, @q] do |f|
   = f.search_field :name_cont
   = f.button :search, class: "btn btn-default"
+
+br
   
 - @languages.each do |language|
-  p
+  span
     = link_to language.name, user_language_path(language), class: 'btn btn-primary'
+    =>
 
 = paginate @languages
