@@ -1,6 +1,75 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+  background: image-url("background.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.alerts {
+  position: absolute;
+  top: 5%;
+
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  color: white;
+}
+
+.menu {
+  float: left;
+
+  font-size: 2em;
+  color: white;
+
+  text-transform: uppercase;
+  letter-spacing: -1px;
+
+  padding-left: 3%;
+
+  font-weight: bold;
+
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.home {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  color: white;
+}
+
+.title, .subtitle {
+  text-shadow: 3px 3px black;
+}
+
+.title {
+  font-size: 7em;
+}
+
+.subtitle {
+  font-size: 3em;
+}
+
+.container {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+
+  color: white;
+  text-shadow: 2px 2px black;
+}
+
+.form-control {
+  width: 15%;
+}
+
 #check_answer {
   color: red;
 }

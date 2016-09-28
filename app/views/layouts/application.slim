@@ -6,17 +6,24 @@ html
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    
+    = favicon_link_tag 'fish.png'
 
   body
-    p
+    p class="alerts"
       = notice
       = alert
 
-    - if current_user
-      = current_user.email
-      =>
-      = link_to 'Profile', user_path(current_user)
-      =>
-      = link_to 'Log out', destroy_user_session_path, method: :delete
+    header class="navbar navbar-fixed-top navbar-inverse"
+      = link_to 'Home', user_languages_path, class: 'menu'
+      nav
+        ul class="nav navbar-nav navbar-right"  
+          - if current_user
+            li
+              = link_to 'Profile', user_path(current_user)
 
-    == yield
+            li
+              = link_to 'Log out', destroy_user_session_path, method: :delete
+        
+    div class="container"
+      == yield

@@ -1,10 +1,11 @@
 h2 Flashcard
 
 - if policy(@flashcard).edit?
-  = link_to 'Edit', edit_user_language_flashcard_path
+  = link_to 'Edit', edit_user_language_flashcard_path, class: 'btn btn-warning'
+  =>
   
 - if policy(@flashcard).destroy?
-  = link_to 'Delete', user_language_flashcard_path(@language, @flashcard), method: :delete, data: { confirm: "Are you sure?" }
+  = link_to 'Delete', user_language_flashcard_path(@language, @flashcard), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger'
 
 p
   strong
@@ -30,4 +31,4 @@ p
     =>
     = rating_for @flashcard, 'stars'
 
-= link_to 'Back', user_languages_path
+= link_to 'Back', user_languages_path, class: 'btn btn-default'

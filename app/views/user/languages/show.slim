@@ -10,27 +10,39 @@ span id="points"
 
 - flashcard = @language.random_flashcard
 
-= form_tag(check_answer_user_flashcard_path(flashcard), method: 'get', remote: true)
-  = label_tag(flashcard.front)
-  =>
-  = text_field_tag(:back)
-  = submit_tag("Enter")
+div class="form-group form-inline"
+  = form_tag(check_answer_user_flashcard_path(flashcard), method: 'get', remote: true)
+    = flashcard.front
+    =>
+    = text_field_tag(:back, nil, class: 'form-control')
+    = submit_tag("Enter", class: 'form-control')
   
-span id="check_answer"
+div id="check_answer"
 =>
-span id="correct"
+div id="correct"
 =>
 
-= link_to 'Next', user_language_path(@language)
+= link_to 'Next', user_language_path(@language), class: 'btn btn-primary'
+=>
 
 - if policy(@language).update?
-  = link_to 'Edit', edit_user_language_path
+  = link_to 'Edit', edit_user_language_path, class: 'btn btn-warning'
+  =>
   
 - if policy(@language).destroy?
-  = link_to 'Delete', user_language_path(@language), method: :delete, data: { confirm: "Are you sure?" }
+  = link_to 'Delete', user_language_path(@language), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger'
+  =>
+
+= link_to 'New flashcard', new_user_language_flashcard_path(@language), class: 'btn btn-primary'
+=>
+= link_to 'Back', user_languages_path, class: 'btn btn-default'
+
+br
+
+br
 
 form
-  input type="button" id="switch" value="Show flashcards"
+  input type="button" class="btn btn-default" id="switch" value="Show flashcards"
   
 div id="list"
   - @flashcards.each do |flashcard|
@@ -44,13 +56,9 @@ div id="list"
   
   = paginate @flashcards
 
-= link_to 'New flashcard', new_user_language_flashcard_path(@language)
-=>
-= link_to 'Back', user_languages_path
-
 javascript:
   $(document).ready(function() {
     $("#switch").click(function() {
-      $("#list").toggle();
+      $("#list").toggle('slow');
     });
   });
