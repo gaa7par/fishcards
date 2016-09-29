@@ -3,6 +3,8 @@ h2
 
 = gravatar_image_tag(@user.email)
 
+= @user.avatar
+
 br
 
 strong
@@ -31,5 +33,6 @@ br
 - if @user == current_user
   = link_to 'Edit profile', edit_user_registration_path(@user), class: 'btn btn-warning'
   =>
+  = link_to 'Upload avatar', edit_user_path(@user), class: 'btn btn-warning'
   
 = link_to 'Back', user_languages_path, class: 'btn btn-default'

@@ -1,0 +1,8 @@
+div class="form-group form-inline"
+  = simple_form_for @user, html: { multipart: true } do |f|
+    = f.label :avatar
+    br
+    = f.file_field :avatar, class: 'form-control'
+    = f.submit class: 'form-control'
+
+= link_to 'Back', user_path(@user)
