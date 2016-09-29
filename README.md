@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<p>
+  <strong>ruby --version</strong><br />
+  ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-darwin15]
+</p>
+<p>
+  <strong>rails --version</strong><br />
+  Rails 5.0.0.1
+</p>
+<p>
+  <strong>postgres --version</strong><br />
+  postgres (PostgreSQL) 9.5.3
+</p>
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<p>
+  <strong>Deployment</strong><br />
+  rails db:create<br />
+  rails db:migrate<br />
+  rails db:seed<br />
+</p>
+<p>
+  <strong>URL</strong><br />
+  <a href="http://fishcards.herokuapp.com/">click</a>
+</p>
