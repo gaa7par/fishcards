@@ -13,4 +13,6 @@ class User < ApplicationRecord
   paginates_per 5
 
   ratyrate_rater
+
+  mount_uploader :avatar, AvatarUploader
 end
