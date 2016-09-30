@@ -10,16 +10,16 @@ span id="points"
 
 - flashcard = @language.random_flashcard
 
-div class="form-group form-inline"
+div class="form-group form-inline" id="check_answer_form"
   = form_tag(check_answer_user_flashcard_path(flashcard), method: 'get', remote: true)
     = flashcard.front
     =>
     = text_field_tag(:back, nil, class: 'form-control')
     = submit_tag("Enter", class: 'form-control')
   
-div id="check_answer"
-=>
 div id="correct"
+=>
+div id="incorrect"
 =>
 
 = link_to 'Next', user_language_path(@language), class: 'btn btn-primary'

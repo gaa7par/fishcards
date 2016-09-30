@@ -48,7 +48,7 @@ class User::FlashcardsController < User::UserController
 
       render :correct, layout: false
     else
-      render :check_answer, layout: false
+      render :incorrect, layout: false
     end
   end
 
