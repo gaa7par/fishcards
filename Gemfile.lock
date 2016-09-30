@@ -248,35 +248,35 @@ DEPENDENCIES
   byebug
   carrierwave (>= 1.0.0.beta, < 2.0)
   coffee-rails (~> 4.2)
-  database_cleaner
-  devise
-  factory_girl_rails
-  gravatar_image_tag
+  database_cleaner (~> 1.5.3)
+  devise (~> 4.2.0)
+  factory_girl_rails (~> 4.7.0)
+  gravatar_image_tag (~> 1.2.0)
   jbuilder (~> 2.5)
-  jquery-rails
-  kaminari
-  letter_opener
+  jquery-rails (~> 4.2.1)
+  kaminari (~> 0.17.0)
+  letter_opener (~> 1.4.1)
   listen (~> 3.0.5)
-  mini_magick
+  mini_magick (~> 4.5.1)
   pg (~> 0.18)
-  pry-rails
+  pry-rails (~> 0.3.4)
   puma (~> 3.0)
-  pundit
+  pundit (~> 1.1.0)
   rails (~> 5.0.0, >= 5.0.0.1)
-  rails-controller-testing
-  ransack
-  ratyrate
+  rails-controller-testing (~> 1.0.1)
+  ransack (~> 1.8.2)
+  ratyrate (~> 1.2.2.alpha)
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
-  simple_form
-  slim
-  slim-rails
-  spring
+  simple_form (~> 3.2.1)
+  slim (~> 3.0.7)
+  slim-rails (~> 3.1.1)
+  spring (~> 1.7.2)
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
-  web-console
+  web-console (~> 3.3.1)
 
 BUNDLED WITH
    1.12.5
