@@ -2,8 +2,8 @@ class User::LanguagesController < User::UserController
   before_action :get_language, only: [:show, :edit, :update, :destroy]
 
   def index
-    @q = Language.ransack(params[:q])
-    @languages = @q.result(distinct: true).page(params[:page])
+    @query = Language.ransack(params[:q])
+    @languages = @query.result(distinct: true).page(params[:page])
   end
 
   def show
@@ -40,11 +40,9 @@ class User::LanguagesController < User::UserController
 
   def destroy
     authorize @language
-    if @language.destroy
-      redirect_to [:user, @language]
-    else
-      render 'index'
-    end
+
+    @language.destroy
+    redirect_to user_languages_path
   end
 
   private

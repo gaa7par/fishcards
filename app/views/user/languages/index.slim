@@ -8,7 +8,7 @@ br
   br
 
 div class="form-group form-inline"
-  = search_form_for [:user, @q] do |f|
+  = search_form_for [:user, @query] do |f|
     = f.search_field :name_cont, class: 'form-control'
     = f.button :search, class: 'form-control'
 

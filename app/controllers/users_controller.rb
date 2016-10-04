@@ -2,12 +2,12 @@ class UsersController < User::UserController
   before_action :get_user, only: [:show, :edit, :update]
 
   def index
-    @q = User.ransack(params[:q])
-    @users = @q.result.page(params[:page]).order(points: :desc)
+    @query = User.ransack(params[:q])
+    @users = @query.result.page(params[:page]).order(points: :desc)
   end
 
   def show
-    @rates = Rate.all.where(rater_id: @user.id).page(params[:page])
+    @rates = Rate.where(rater_id: @user.id).page(params[:page])
   end
 
   def edit

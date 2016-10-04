@@ -34,11 +34,9 @@ class User::FlashcardsController < User::UserController
 
   def destroy
     authorize @flashcard
-    if @flashcard.destroy
-      redirect_to [:user, @language]
-    else
-      render 'index'
-    end
+
+    @flashcard.destroy
+    redirect_to [:user, @language]
   end
 
   def check_answer
@@ -46,9 +44,9 @@ class User::FlashcardsController < User::UserController
       current_user.points += 1
       current_user.save!
 
-      render :correct, layout: false
+      render :correct
     else
-      render :incorrect, layout: false
+      render :incorrect
     end
   end
 
