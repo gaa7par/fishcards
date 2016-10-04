@@ -10,12 +10,15 @@ span id="points"
 
 - flashcard = @language.random_flashcard
 
-div class="form-group form-inline" id="check_answer_form"
-  = form_tag(check_answer_user_flashcard_path(flashcard), method: 'get', remote: true)
-    = flashcard.front
-    =>
-    = text_field_tag(:back, nil, class: 'form-control')
-    = submit_tag("Enter", class: 'form-control')
+- if flashcard
+  div class="form-group form-inline" id="check_answer_form"
+    = form_tag(check_answer_user_flashcard_path(flashcard), method: 'get', remote: true)
+      = flashcard.front
+      =>
+      = text_field_tag(:back, nil, class: 'form-control')
+      = submit_tag("Enter", class: 'form-control')
+- else
+  p Add flashcards to start!
   
 div id="correct"
 =>

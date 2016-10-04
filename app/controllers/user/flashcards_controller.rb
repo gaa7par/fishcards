@@ -44,9 +44,9 @@ class User::FlashcardsController < User::UserController
       current_user.points += 1
       current_user.save!
 
-      render :correct
+      render :correct, layout: false
     else
-      render :incorrect
+      render :incorrect, layout: false
     end
   end
 
