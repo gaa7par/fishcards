@@ -40,7 +40,7 @@ class User::FlashcardsController < User::UserController
   end
 
   def check_answer
-    if @flashcard.back.downcase == params[:back].downcase
+    if @flashcard.the_same?(params)
       current_user.points += 1
       current_user.save!
 
