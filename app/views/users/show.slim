@@ -36,7 +36,7 @@ br
   =>
   = link_to 'Upload avatar', edit_user_path(@user), class: 'btn btn-warning'
 
-- if current_user.admin?
+- if current_user.admin? && !@user.admin?
   div class="form-group form-inline"
     = form_tag(ban_user_path, method: 'get')
     
