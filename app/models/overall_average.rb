@@ -1,4 +1,4 @@
 # frozen_string_literal: true
-class OverallAverage < ActiveRecord::Base
+class OverallAverage < ApplicationRecord
   belongs_to :rateable, polymorphic: true
 end

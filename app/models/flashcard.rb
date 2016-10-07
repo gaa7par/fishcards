@@ -7,11 +7,9 @@ class Flashcard < ApplicationRecord
   validates :back, presence: true
   validates :user_id, :language_id, presence: true
 
-  paginates_per 10
-
   ratyrate_rateable 'stars'
 
   def the_same?(params)
-    back.casecmp(params[:back].downcase).zero?
+    back.casecmp(params[:back]).zero?
   end
 end

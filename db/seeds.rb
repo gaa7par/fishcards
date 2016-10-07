@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 admin = 'admin'
-users = %w(alpha bravo charlie delta echo foxtrot golf hotel india juliet kilo lima mike november oscar papa quebec romeo sierra tango uniform victor whiskey x-ray yankee zulu)
+users = %w(alpha bravo charlie delta echo foxtrot golf hotel india juliet kilo lima mike november oscar papa quebec
+           romeo sierra tango uniform victor whiskey x-ray yankee zulu)
 
 languages = {
   'Spanish' => {
@@ -41,14 +42,16 @@ languages = {
 
 def add_admin(admin)
   unless User.find_by(name: admin)
-    User.create!(name: admin, email: "#{admin}@fishcards.com", password: 'super_secret', password_confirmation: 'super_secret', admin: true, points: 1000)
+    User.create!(name: admin, email: "#{admin}@fishcards.com", password: 'super_secret',
+                 password_confirmation: 'super_secret', admin: true, points: 1000)
   end
 end
 
 def add_users(users)
   users.each do |name|
     unless User.find_by(name: name)
-      User.create!(name: name, email: "#{name}@example.com", password: 'secret', password_confirmation: 'secret', points: rand(1000))
+      User.create!(name: name, email: "#{name}@example.com", password: 'secret',
+                   password_confirmation: 'secret', points: rand(1000))
     end
   end
 end

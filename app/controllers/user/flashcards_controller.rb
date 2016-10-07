@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class User::FlashcardsController < User::UserController
-  before_action :get_language, except: :check_answer
-  before_action :get_flashcard, only: [:show, :edit, :update, :destroy, :check_answer]
+  before_action :language, except: :check_answer
+  before_action :flashcard, only: [:show, :edit, :update, :destroy, :check_answer]
 
   def show
   end
@@ -57,11 +57,11 @@ class User::FlashcardsController < User::UserController
     params.require(:flashcard).permit(:front, :back)
   end
 
-  def get_language
+  def language
     @language = Language.find(params[:language_id])
   end
 
-  def get_flashcard
+  def flashcard
     @flashcard = Flashcard.find(params[:id])
   end
 end

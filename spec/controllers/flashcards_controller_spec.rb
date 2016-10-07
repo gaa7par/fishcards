@@ -45,7 +45,9 @@ RSpec.describe User::FlashcardsController, type: :controller do
     let(:call_request) { post :create, params: { flashcard: attributes, language_id: language.id } }
 
     context 'valid request' do
-      let(:attributes) { attributes_for(:flashcard, front: 'el chico', back: 'the boy', user_id: user.id, language_id: language.id) }
+      let(:attributes) do
+        attributes_for(:flashcard, front: 'el chico', back: 'the boy', user_id: user.id, language_id: language.id)
+      end
 
       it { expect { call_request }.to change { Flashcard.count }.by(1) }
 
@@ -74,11 +76,16 @@ RSpec.describe User::FlashcardsController, type: :controller do
   end
 
   describe '#update' do
-    let(:flashcard) { create(:flashcard, front: 'el chico', back: 'the boy', user_id: user.id, language_id: language.id) }
+    let(:flashcard) do
+      create(:flashcard, front: 'el chico', back: 'the boy', user_id: user.id, language_id: language.id)
+    end
+
     let(:call_request) { put :update, params: { flashcard: attributes, id: flashcard.id, language_id: language.id } }
 
     context 'valid request' do
-      let(:attributes) { attributes_for(:flashcard, front: 'la chica', back: 'the girl', user_id: user.id, language_id: language.id) }
+      let(:attributes) do
+        attributes_for(:flashcard, front: 'la chica', back: 'the girl', user_id: user.id, language_id: language.id)
+      end
 
       it { expect { call_request }.to change { flashcard.reload.front }.from('el chico').to('la chica') }
       it { expect { call_request }.to change { flashcard.reload.back }.from('the boy').to('the girl') }
@@ -119,7 +126,9 @@ RSpec.describe User::FlashcardsController, type: :controller do
 
   describe '#check_answer' do
     let(:call_request) { get :check_answer, xhr: true, params: { id: flashcard.id, back: back } }
-    let!(:flashcard) { create(:flashcard, front: 'el chico', back: 'the boy', user_id: user.id, language_id: language.id) }
+    let!(:flashcard) do
+      create(:flashcard, front: 'el chico', back: 'the boy', user_id: user.id, language_id: language.id)
+    end
 
     context 'correct answer' do
       let(:back) { 'the boy' }

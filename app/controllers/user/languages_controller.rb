@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class User::LanguagesController < User::UserController
-  before_action :get_language, only: [:show, :edit, :update, :destroy]
+  before_action :language, only: [:show, :edit, :update, :destroy]
 
   def index
     @query = Language.ransack(params[:q])
@@ -52,7 +52,7 @@ class User::LanguagesController < User::UserController
     params.require(:language).permit(:name)
   end
 
-  def get_language
+  def language
     @language = Language.find(params[:id])
   end
 end

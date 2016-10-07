@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class UsersController < User::UserController
-  before_action :get_user, only: [:show, :edit, :update, :ban]
+  before_action :user, only: [:show, :edit, :update, :ban, :unban]
 
   def index
     @query = User.ransack(params[:q])
@@ -23,7 +23,14 @@ class UsersController < User::UserController
   end
 
   def ban
-    @user.banned = !@user.banned
+    @user.banned = true
+    @user.save!
+
+    redirect_to @user
+  end
+
+  def unban
+    @user.banned = false
     @user.save!
 
     redirect_to @user
@@ -35,7 +42,7 @@ class UsersController < User::UserController
     params.require(:user).permit(:avatar)
   end
 
-  def get_user
+  def user
     @user = User.find(params[:id])
   end
 end
