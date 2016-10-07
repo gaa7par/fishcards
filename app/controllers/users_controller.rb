@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class UsersController < User::UserController
-  before_action :get_user, only: [:show, :edit, :update]
+  before_action :get_user, only: [:show, :edit, :update, :ban]
 
   def index
     @query = User.ransack(params[:q])
@@ -20,6 +20,13 @@ class UsersController < User::UserController
     else
       render 'edit'
     end
+  end
+
+  def ban
+    @user.banned = !@user.banned
+    @user.save!
+    
+    redirect_to @user
   end
 
   private
