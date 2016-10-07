@@ -25,7 +25,7 @@ class UsersController < User::UserController
   def ban
     @user.banned = !@user.banned
     @user.save!
-    
+
     redirect_to @user
   end
 
