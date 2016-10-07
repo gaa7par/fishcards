@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
@@ -64,6 +64,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'letter_opener', '~> 1.4.1'
+
+  gem 'rubocop', '~> 0.43.0', require: false
 end
 
 group :test do

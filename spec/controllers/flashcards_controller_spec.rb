@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe User::FlashcardsController, type: :controller do
@@ -127,7 +128,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
       context 'after request' do
         before { call_request }
 
-        it { expect(response.body).to include "Correct!" }
+        it { expect(response.body).to include 'Correct!' }
       end
     end
 

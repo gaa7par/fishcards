@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class User::FlashcardsController < User::UserController
   before_action :get_language, except: :check_answer
   before_action :get_flashcard, only: [:show, :edit, :update, :destroy, :check_answer]
