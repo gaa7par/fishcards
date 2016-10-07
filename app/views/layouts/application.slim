@@ -13,6 +13,8 @@ html
     p class="alerts"
       = notice
       = alert
+      =>
+      = flash[:error]
 
     header class="navbar navbar-fixed-top navbar-inverse"
       = link_to 'Home', user_languages_path, class: 'menu'

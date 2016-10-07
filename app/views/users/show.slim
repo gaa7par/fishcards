@@ -35,5 +35,14 @@ br
   = link_to 'Edit profile', edit_user_registration_path(@user), class: 'btn btn-warning'
   =>
   = link_to 'Upload avatar', edit_user_path(@user), class: 'btn btn-warning'
+
+- if current_user.admin? && !@user.admin?
+  div class="form-group form-inline"
+    = form_tag(ban_user_path, method: 'get')
+    
+    - if @user.banned
+      = submit_tag("Unban user", class: 'btn btn-warning')
+    - else
+      = submit_tag("Ban user", class: 'btn btn-danger')
   
 = link_to 'Back', user_languages_path, class: 'btn btn-default'

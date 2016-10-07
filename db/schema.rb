@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20_160_929_080_241) do
     t.inet     'current_sign_in_ip'
     t.inet     'last_sign_in_ip'
     t.boolean  'admin',                  default: false, null: false
+    t.boolean  'banned',                 default: false, null: false
     t.integer  'points',                 default: 0,     null: false
     t.datetime 'created_at',                             null: false
     t.datetime 'updated_at',                             null: false
