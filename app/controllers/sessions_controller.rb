@@ -5,8 +5,7 @@ class SessionsController < Devise::SessionsController
   def after_sign_in_path_for(resource)
     if resource.is_a?(User) && resource.banned?
       sign_out resource
-      flash[:error] = 'Account banned!'
-      root_path
+      redirect_to root_path, alert: 'Your account has been banned!'
     else
       super
     end

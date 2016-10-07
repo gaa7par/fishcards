@@ -38,7 +38,7 @@ br
 
 - if current_user.admin? && !@user.admin?
   div class="form-group form-inline"
-    = form_tag(ban_user_path, method: 'get')
+    = form_tag(ban_user_path, method: :patch)
     
     - if @user.banned
       = submit_tag("Unban user", class: 'btn btn-warning')
