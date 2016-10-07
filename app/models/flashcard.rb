@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Flashcard < ApplicationRecord
   belongs_to :user
   belongs_to :language
@@ -11,6 +12,6 @@ class Flashcard < ApplicationRecord
   ratyrate_rateable 'stars'
 
   def the_same?(params)
-    self.back.downcase == params[:back].downcase
+    back.casecmp(params[:back].downcase).zero?
   end
 end

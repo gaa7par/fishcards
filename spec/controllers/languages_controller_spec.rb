@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe User::LanguagesController, type: :controller do
@@ -24,7 +25,7 @@ RSpec.describe User::LanguagesController, type: :controller do
       before { call_request }
 
       it { should render_template 'show' }
-       it { expect(assigns(:language)).to eq language }
+      it { expect(assigns(:language)).to eq language }
     end
   end
 

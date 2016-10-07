@@ -1,4 +1,5 @@
-require "pundit/rspec"
+# frozen_string_literal: true
+require 'pundit/rspec'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

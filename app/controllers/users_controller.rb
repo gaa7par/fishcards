@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class UsersController < User::UserController
   before_action :get_user, only: [:show, :edit, :update]
 
