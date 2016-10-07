@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  before_filter :banned?
+  before_action :banned?
 
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
