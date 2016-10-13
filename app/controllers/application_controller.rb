@@ -9,10 +9,9 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
   def banned?
-    if current_user&.banned?
-      sign_out current_user
-      redirect_to root_path, alert: 'Your account has been banned!'
-    end
+    return false if current_user&.banned?
+    sign_out current_user
+    redirect_to root_path, alert: 'Your account has been banned!'
   end
 
   def not_authorized

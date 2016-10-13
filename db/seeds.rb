@@ -41,10 +41,9 @@ languages = {
 }
 
 def add_admin(admin)
-  unless User.find_by(name: admin)
-    User.create!(name: admin, email: "#{admin}@fishcards.com", password: 'super_secret',
-                 password_confirmation: 'super_secret', admin: true, points: 1000)
-  end
+  return false unless User.find_by(name: admin)
+  User.create!(name: admin, email: "#{admin}@fishcards.com", password: 'super_secret',
+               password_confirmation: 'super_secret', admin: true, points: 1000)
 end
 
 def add_users(users)
