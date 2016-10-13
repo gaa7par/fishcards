@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 Rails.application.routes.draw do
   post '/rate' => 'rater#create', as: 'rate'
   devise_for :users, controllers: { registrations: 'registrations' }

@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class UsersController < User::UserController
   before_action :user, only: [:show, :edit, :update, :ban, :unban]
 

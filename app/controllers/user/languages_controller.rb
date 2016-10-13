@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class User::LanguagesController < User::UserController
   before_action :language, only: [:show, :edit, :update, :destroy]
 

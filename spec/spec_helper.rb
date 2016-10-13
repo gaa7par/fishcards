@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 require 'pundit/rspec'
 
 RSpec.configure do |config|

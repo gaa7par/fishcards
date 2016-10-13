@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe User::FlashcardsController, type: :controller do
@@ -46,7 +45,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
 
     context 'valid request' do
       let(:attributes) do
-        attributes_for(:flashcard, front: 'el chico', back: 'the boy', user_id: user.id, language_id: language.id)
+        attributes_for(:flashcard, front: 'el chico', back: 'the boy', language_id: language.id)
       end
 
       it { expect { call_request }.to change { Flashcard.count }.by(1) }
@@ -62,7 +61,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
       end
 
       context 'invalid request' do
-        let(:attributes) { attributes_for(:flashcard, front: nil, back: nil, user_id: nil, language_id: nil) }
+        let(:attributes) { attributes_for(:flashcard, front: nil) }
 
         it { expect { call_request }.not_to change { Flashcard.count } }
 
@@ -127,11 +126,12 @@ RSpec.describe User::FlashcardsController, type: :controller do
   describe '#check_answer' do
     let(:call_request) { get :check_answer, xhr: true, params: { id: flashcard.id, back: back } }
     let!(:flashcard) do
-      create(:flashcard, front: 'el chico', back: 'the boy', user_id: user.id, language_id: language.id)
+      create(:flashcard, front: 'el chico', back: 'the boy', language_id: language.id)
     end
 
     context 'correct answer' do
       let(:back) { 'the boy' }
+
       it { expect { call_request }.to change { user.reload.points }.by(1) }
 
       context 'after request' do
@@ -143,6 +143,7 @@ RSpec.describe User::FlashcardsController, type: :controller do
 
     context 'incorrect answer' do
       let(:back) { 'the girl' }
+
       it { expect { call_request }.not_to change { user.points } }
 
       context 'after request' do

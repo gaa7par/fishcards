@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class FlashcardPolicy < ApplicationPolicy
   def edit?
     (record.user == user) || user.admin

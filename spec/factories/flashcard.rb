@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 FactoryGirl.define do
   factory :flashcard do
     sequence(:front) { |n| "name-#{n}" }

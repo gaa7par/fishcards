@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class LanguagePolicy < ApplicationPolicy
   def edit?
     user.admin

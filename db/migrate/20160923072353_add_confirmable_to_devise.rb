@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class AddConfirmableToDevise < ActiveRecord::Migration
   # Note: You can't use change, as User.update_all will fail in the down migration
   def up

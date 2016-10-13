@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe User::LanguagesController, type: :controller do
@@ -56,7 +55,7 @@ RSpec.describe User::LanguagesController, type: :controller do
     let(:call_request) { post :create, params: { language: attributes } }
 
     context 'valid request' do
-      let(:attributes) { attributes_for(:language, name: 'Spanish', user_id: user.id) }
+      let(:attributes) { attributes_for(:language, name: 'Spanish') }
 
       it { expect { call_request }.to change { Language.count }.by(1) }
 
@@ -70,7 +69,7 @@ RSpec.describe User::LanguagesController, type: :controller do
       end
 
       context 'invalid request' do
-        let(:attributes) { attributes_for(:language, name: nil, user_id: nil) }
+        let(:attributes) { attributes_for(:language, name: nil) }
 
         it { expect { call_request }.not_to change { Language.count } }
 
@@ -88,7 +87,7 @@ RSpec.describe User::LanguagesController, type: :controller do
     let(:call_request) { put :update, params: { language: attributes, id: language.id } }
 
     context 'valid request' do
-      let(:attributes) { attributes_for(:language, name: 'French', user_id: user.id) }
+      let(:attributes) { attributes_for(:language, name: 'French') }
 
       it { expect { call_request }.to change { language.reload.name }.from('Spanish').to('French') }
 
@@ -100,7 +99,7 @@ RSpec.describe User::LanguagesController, type: :controller do
     end
 
     context 'invalid request' do
-      let(:attributes) { attributes_for(:language, name: nil, user_id: user.id) }
+      let(:attributes) { attributes_for(:language, name: nil) }
 
       it { expect { call_request }.not_to change { language.reload.name } }
 
