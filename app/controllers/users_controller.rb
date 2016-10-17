@@ -22,16 +22,12 @@ class UsersController < User::UserController
   end
 
   def ban
-    @user.banned = true
-    @user.save!
-
+    @user.update_attributes!(banned: true)
     redirect_to @user
   end
 
   def unban
-    @user.banned = false
-    @user.save!
-
+    @user.update_attributes!(banned: false)
     redirect_to @user
   end
 

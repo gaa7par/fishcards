@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User::FlashcardsController, type: :controller do
+  render_views
+
   let(:user) { create(:user, admin: true) }
   let(:language) { create(:language, user_id: user.id) }
   before { sign_in user }

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User::LanguagesController, type: :controller do
+  render_views
+
   let(:user) { create(:user, admin: true) }
   before { sign_in user }
 
