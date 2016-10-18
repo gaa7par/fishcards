@@ -46,6 +46,11 @@ gem 'ratyrate', '~> 1.2.2.alpha'
 gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 gem 'mini_magick', '~> 4.5.1'
 
+gem 'capybara', '~> 2.8.0'
+gem 'selenium-webdriver', '~> 2.53.4'
+gem 'capybara-email', '~> 2.5.0'
+gem 'email_spec', '~> 2.1.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -68,7 +73,6 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
   gem 'rails-controller-testing', '~> 1.0.1'
   gem 'database_cleaner', '~> 1.5.3'
 end
