@@ -1,3 +1,4 @@
+require 'capybara/rspec'
 require 'pundit/rspec'
 
 RSpec.configure do |config|
